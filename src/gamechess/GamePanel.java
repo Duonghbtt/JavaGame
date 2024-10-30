@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package gamechess;
 
 import java.awt.AlphaComposite;
@@ -271,17 +268,16 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
     private boolean isKingInCheck() {
-
-        Piece king = getKing(true);
-        if (activeP.canMove(king.col, king.row)) {
-            checkingP = activeP;
+    Piece king = getKing(false);  // Kiểm tra vua của người chơi hiện tại
+    for (Piece piece : simPieces) {
+        if (piece.color != currentColor && piece.canMove(king.col, king.row)) {
+            checkingP = piece;
             return true;
-        } else {
-            checkingP = null;
         }
-
-        return false;
     }
+    checkingP = null;
+    return false;
+}
 
     private Piece getKing(boolean opponent) {
         Piece king = null;
@@ -624,14 +620,14 @@ public class GamePanel extends JPanel implements Runnable {
         } else {
             if (currentColor == WHITE) {
                 g2.drawString("White's turn", 672, 450);
-                if (checkingP != null && checkingP.color == BLACK) {
+                if (isKingInCheck()) {
                     g2.setColor(Color.red);
                     g2.drawString("The King", 672, 550);
                     g2.drawString("Is in check", 672, 600);
                 }
             } else {
                 g2.drawString("Black's turn", 672, 250);
-                if (checkingP != null && checkingP.color == WHITE) {
+                if (isKingInCheck()) {
                     g2.setColor(Color.red);
                     g2.drawString("The King", 672, 100);
                     g2.drawString("Is in check", 672, 150);
