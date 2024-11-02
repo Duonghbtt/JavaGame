@@ -4,7 +4,23 @@
  */
 package learnmode;
 
+import static gamechess.GameChess.BishopLearn;
+import static gamechess.GameChess.CapturingLearn;
+import static gamechess.GameChess.CastlingKingLearn;
+import static gamechess.GameChess.CastlingQueenLearn;
+import static gamechess.GameChess.CheckLearn;
+import static gamechess.GameChess.CheckmateLearn;
+import static gamechess.GameChess.EnPassantLearn;
+import static gamechess.GameChess.GetOutLearn;
 import static gamechess.GameChess.Interface;
+import static gamechess.GameChess.KingLearn;
+import static gamechess.GameChess.KnightLearn;
+import static gamechess.GameChess.NotationLearn;
+import static gamechess.GameChess.PawnLearn;
+import static gamechess.GameChess.PromotionLearn;
+import static gamechess.GameChess.QueenLearn;
+import static gamechess.GameChess.RookLearn;
+import static gamechess.GameChess.StalemateLearn;
 
 /**
  *
@@ -270,34 +286,34 @@ public class LearnModeScreen extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(GetOutLearn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(CheckLearn, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(CheckLearn, javax.swing.GroupLayout.DEFAULT_SIZE, 136, Short.MAX_VALUE)
-                    .addComponent(GetOutLearn, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(CheckmateLearn, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(StalemateLearn, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(12, 12, 12))
+                    .addComponent(CheckmateLearn, javax.swing.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE)
+                    .addComponent(StalemateLearn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(16, 16, 16))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel3)
-                .addGap(127, 127, 127))
+                .addGap(156, 156, 156))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel3)
-                .addGap(18, 18, 18)
+                .addGap(20, 20, 20)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(CheckLearn)
                     .addComponent(CheckmateLearn))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(GetOutLearn)
                     .addComponent(StalemateLearn))
-                .addGap(94, 94, 94))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
         jPanel4.setBackground(new java.awt.Color(190, 138, 59));
@@ -407,7 +423,7 @@ public class LearnModeScreen extends javax.swing.JFrame {
                         .addGap(123, 123, 123))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(73, 73, 73))))
+                        .addGap(30, 30, 30))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(Back)
@@ -421,8 +437,8 @@ public class LearnModeScreen extends javax.swing.JFrame {
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(55, 55, 55)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(46, 46, 46)
                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGap(16, 16, 16)
@@ -444,66 +460,98 @@ public class LearnModeScreen extends javax.swing.JFrame {
 
     private void PawnLearnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PawnLearnActionPerformed
         // TODO add your handling code here:
+        PawnLearn();
+        dispose();
     }//GEN-LAST:event_PawnLearnActionPerformed
 
     private void KnightLearnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_KnightLearnActionPerformed
         // TODO add your handling code here:
+        KnightLearn();
+        dispose();
     }//GEN-LAST:event_KnightLearnActionPerformed
 
     private void RookLearnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RookLearnActionPerformed
         // TODO add your handling code here:
+        RookLearn();
+        dispose();
     }//GEN-LAST:event_RookLearnActionPerformed
 
     private void BishopLearnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BishopLearnActionPerformed
         // TODO add your handling code here:
+        BishopLearn();
+        dispose();
     }//GEN-LAST:event_BishopLearnActionPerformed
 
     private void QueenLearnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_QueenLearnActionPerformed
         // TODO add your handling code here:
+        QueenLearn();
+        dispose();
     }//GEN-LAST:event_QueenLearnActionPerformed
 
     private void KingLearnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_KingLearnActionPerformed
         // TODO add your handling code here:
+        KingLearn();
+        dispose();
     }//GEN-LAST:event_KingLearnActionPerformed
 
     private void CapturingLearnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CapturingLearnActionPerformed
         // TODO add your handling code here:
+        CapturingLearn();
+        dispose();
     }//GEN-LAST:event_CapturingLearnActionPerformed
 
     private void NotationLearnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NotationLearnActionPerformed
         // TODO add your handling code here:
+        NotationLearn();
+        dispose();
     }//GEN-LAST:event_NotationLearnActionPerformed
 
     private void CheckLearnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckLearnActionPerformed
         // TODO add your handling code here:
+        CheckLearn();
+        dispose();
     }//GEN-LAST:event_CheckLearnActionPerformed
 
     private void GetOutLearnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GetOutLearnActionPerformed
         // TODO add your handling code here:
+        GetOutLearn();
+        dispose();
     }//GEN-LAST:event_GetOutLearnActionPerformed
 
     private void StalemateLearnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StalemateLearnActionPerformed
         // TODO add your handling code here:
+        StalemateLearn();
+        dispose();
     }//GEN-LAST:event_StalemateLearnActionPerformed
 
     private void CheckmateLearnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckmateLearnActionPerformed
         // TODO add your handling code here:
+        CheckmateLearn();
+        dispose();
     }//GEN-LAST:event_CheckmateLearnActionPerformed
 
     private void CastlingKingLearnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CastlingKingLearnActionPerformed
         // TODO add your handling code here:
+        CastlingKingLearn();
+        dispose();
     }//GEN-LAST:event_CastlingKingLearnActionPerformed
 
     private void CastlingQueenLearnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CastlingQueenLearnActionPerformed
         // TODO add your handling code here:
+        CastlingQueenLearn();
+        dispose();
     }//GEN-LAST:event_CastlingQueenLearnActionPerformed
 
     private void PromotionLearnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PromotionLearnActionPerformed
         // TODO add your handling code here:
+        PromotionLearn();
+        dispose();
     }//GEN-LAST:event_PromotionLearnActionPerformed
 
     private void EnPassantLearnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EnPassantLearnActionPerformed
         // TODO add your handling code here:
+        EnPassantLearn();
+        dispose();
     }//GEN-LAST:event_EnPassantLearnActionPerformed
 
     private void BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackActionPerformed
