@@ -4,6 +4,7 @@
  */
 package gamechess;
 
+import static gamechess.GameChess.AIGame;
 import static gamechess.GameChess.LearnMode;
 
 /**
@@ -45,6 +46,11 @@ public class ChessStartScreen extends javax.swing.JFrame {
 
         jButton1.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
         jButton1.setText("PLAY VS COMPUTER");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 220, -1, -1));
 
         jButton2.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
@@ -92,6 +98,12 @@ public class ChessStartScreen extends javax.swing.JFrame {
         LearnMode();
         dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        AIGame();
+        dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments

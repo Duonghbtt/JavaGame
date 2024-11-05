@@ -20,6 +20,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JTextArea;
 import static gamechess.GameChess.LearnMode;
+import static gamechess.GameChess.NextMode;
 import static gamechess.GamePanel.BLACK;
 import static gamechess.GamePanel.HEIGHT;
 import static gamechess.GamePanel.WHITE;
@@ -27,6 +28,7 @@ import static gamechess.GamePanel.WIDTH;
 import static gamechess.GamePanel.castlingP;
 import static gamechess.GamePanel.pieces;
 import static gamechess.GamePanel.simPieces;
+import learnmode.BackNoYes1;
 import pieces.Bishop;
 import pieces.King;
 import pieces.Knight;
@@ -42,6 +44,7 @@ public class EnPassantPanel extends GamePanel {
     private JTextArea messageArea; // Khai báo JLabel
     private boolean isInteractionEnabled = false;
     private int click = 0;
+    private int ok  = 0;
 
     public EnPassantPanel(JFrame frame) {
         super(frame); // Gọi constructor của GamePanel với JFrame
@@ -70,7 +73,7 @@ public class EnPassantPanel extends GamePanel {
                 // Thực hiện hành động khi nút được nhấn
                 click += 1;
                 System.out.println("Next button clicked");
-                
+
                 if (click == 1) {
                     isInteractionEnabled = true;
                     nextButton.setEnabled(false);
@@ -82,8 +85,8 @@ public class EnPassantPanel extends GamePanel {
         backButton = new JButton("Back");
         backButton.setBounds(WIDTH - 100, HEIGHT + 110 - 100, 80, 30); // Đặt vị trí và kích thước
         backButton.addActionListener(e -> {
-            frame.dispose(); // Giải phóng tài nguyên của cửa sổ hiện tại
-            LearnMode(); // Gọi hàm Interface() để mở giao diện mới
+            BackNoYes1 confirmationDialog = new BackNoYes1(frame); // Truyền frame chính vào
+            confirmationDialog.setVisible(true);
         }); // Gọi hàm Interface() khi nhấn nút
         backButton.setFocusable(false); // Tắt tính năng tiêu điểm cho nút
 
@@ -129,67 +132,120 @@ public class EnPassantPanel extends GamePanel {
     @Override
     public void update() {
         super.update();
+        if(ok==1){
+        NextMode();
+        frame.dispose();
+        ok = 0;
+        }
         if (isInteractionEnabled) {
-            if (promotion) {
-                promoting();
-            } else if (gameOver == false && stalemate == false) {
-                ///// MOUSE BUTTON PRESSED ////
-                if (mouse.pressed) {
-                    if (activeP == null) {
-                        /// if the activeP is null, check if you can pick up a piece
-                        for (Piece piece : simPieces) {
-                            // If the mouse is on an ally piece, pick it up as the activeP
-                            if (piece.color == currentColor
-                                    && piece.col == mouse.x / Board.SQUARE_SIZE
-                                    && piece.row == mouse.y / Board.SQUARE_SIZE) {
-                                activeP = piece;
-                                availableCaptures = activeP.getAvailableCaptures();
-                                availableMoves = activeP.getAvailableMoves();
-                            }
-                        }
-                    } else {
-                        // if the player holding a piece, simulate the move
-                        simulate();
-                    }
-                }
-                /// MOUSE BUTTON RELEASED ////
-                if (mouse.pressed == false) {
-                    if (activeP != null) {
-
-                        if (validSquare) {
-                            // Move confirmed
-
-                            //Update the piece list in case a piece has been captured and removed during the simulation
-                            copyPieces(simPieces, pieces);
-                            activeP.updatePosition();
-                            if (castlingP != null) {
-                                castlingP.updatePosition();
-                            }
-
-                            if (isKingInCheck() && isCheckmate()) {
-                                gameOver = true;
-
-                            } else if (isStalemate() && isKingInCheck() == false) {
-                                stalemate = true;
-                            } else { // The game is still going on
-                                if (canPromote() == true) {
-                                    promotion = true;
-                                } else {
-                                    changePlayer();
+            if (currentColor == WHITE) {
+                if (promotion) {
+                    promoting();
+                } else if (gameOver == false && stalemate == false) {
+                    ///// MOUSE BUTTON PRESSED ////
+                    if (mouse.pressed) {
+                        if (activeP == null) {
+                            /// if the activeP is null, check if you can pick up a piece
+                            for (Piece piece : simPieces) {
+                                // If the mouse is on an ally piece, pick it up as the activeP
+                                if (piece.color == currentColor
+                                        && piece.col == mouse.x / Board.SQUARE_SIZE
+                                        && piece.row == mouse.y / Board.SQUARE_SIZE) {
+                                    activeP = piece;
+                                    availableCaptures = activeP.getAvailableCaptures();
+                                    availableMoves = activeP.getAvailableMoves();
                                 }
                             }
-
                         } else {
-                            // the move is not valid so reset everything
-                            copyPieces(pieces, simPieces);
-                            activeP.resetPosition();
+                            // if the player holding a piece, simulate the move
+                            simulate();
                         }
-                        if (!promotion) {
-                            activeP = null;
-                        }
-                        availableMoves = null;
-                        availableCaptures = null;
                     }
+                    /// MOUSE BUTTON RELEASED ////
+                    if (mouse.pressed == false) {
+                        if (activeP != null) {
+
+                            if (validSquare) {
+                                // Move confirmed
+
+                                //Update the piece list in case a piece has been captured and removed during the simulation
+                                copyPieces(simPieces, pieces);
+                                activeP.updatePosition();
+                                if (castlingP != null) {
+                                    castlingP.updatePosition();
+                                }
+
+                                if (isKingInCheck() && isCheckmate()) {
+                                    gameOver = true;
+
+                                } else if (isStalemate() && isKingInCheck() == false) {
+                                    stalemate = true;
+                                } else { // The game is still going on
+                                    if (canPromote() == true) {
+                                        promotion = true;
+                                    } else {
+                                        changePlayer();
+                                    }
+                                }
+
+                            } else {
+                                // the move is not valid so reset everything
+                                copyPieces(pieces, simPieces);
+                                activeP.resetPosition();
+                            }
+                            if (!promotion) {
+                                activeP = null;
+                            }
+                            availableMoves = null;
+                            availableCaptures = null;
+                        }
+                    }
+                }
+            } else {
+                for (Piece piece : simPieces) {
+                    // If the mouse is on an ally piece, pick it up as the activeP
+                    if (piece.color == currentColor
+                            && piece.type == Type.PAWN) {
+                        activeP = piece;
+                        availableCaptures = activeP.getAvailableCaptures();
+                        availableMoves = activeP.getAvailableMoves();
+                    }
+                }
+                if(activeP!=null){
+                simulate();
+                copyPieces(simPieces, pieces);
+                activeP.x = 3 * 80;
+                activeP.y = 3 * 80;
+                activeP.col = activeP.getCol(activeP.x);
+                activeP.row = activeP.getRow(activeP.y);
+                copyPieces(simPieces, pieces);
+                activeP.updatePosition();
+                if (castlingP != null) {
+                    castlingP.updatePosition();
+                }
+                //System.out.println(isKingInCheck());
+                if (isKingInCheck() && isCheckmate()) {
+                    gameOver = true;
+                } else if (isStalemate() && isKingInCheck() == false) {
+                    stalemate = true;
+                } else { // The game is still going on
+                    if (canPromote() == true) {
+                        promotion = true;
+                    } else {
+                        
+                        changePlayer();
+                    }
+                }
+
+                if (!promotion) {
+                    activeP = null;
+                }
+                availableMoves = null;
+                availableCaptures = null;
+                }
+                else{
+                    isInteractionEnabled = false;
+                    ok = 1;
                 }
             }
         }

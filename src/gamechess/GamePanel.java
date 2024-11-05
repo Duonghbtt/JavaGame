@@ -36,7 +36,7 @@ public class GamePanel extends JPanel implements Runnable {
     Board board = new Board();
     Mouse mouse = new Mouse();
     private JButton backButton;
-    private JFrame frame;
+    public JFrame frame;
     //Color
     public static final int WHITE = 0;
     public static final int BLACK = 1;
@@ -109,7 +109,7 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
     public void update() {
-        
+
     }
 
     public void simulate() {
@@ -139,8 +139,8 @@ public class GamePanel extends JPanel implements Runnable {
             canMove = true;
 
             // If hitting a piece, remove it from the list
+            
             if (activeP.hittingP != null) {
-
                 simPieces.remove(activeP.hittingP.getIndex());
             }
 
@@ -153,7 +153,8 @@ public class GamePanel extends JPanel implements Runnable {
         }
     }
 
-    private boolean isIllegal(Piece king) {
+    public boolean isIllegal(Piece king) {
+        if(currentColor == BLACK) System.out.println("isIllegal "+king.type + " " + king.color + " " + king.col + " " + king.row);
         if (king.type == Type.KING) {
             for (Piece piece : simPieces) {
                 if (piece != king && piece.color != king.color && piece.canMove(king.col, king.row)) {
@@ -165,8 +166,9 @@ public class GamePanel extends JPanel implements Runnable {
         return false;
     }
 
-    private boolean opponentCanCaptureKing() {
+    public boolean opponentCanCaptureKing() {
         Piece king = getKing(false);
+        if(currentColor == BLACK) System.out.println("oppp " + king.type + " " + king.color + " " + king.col + " " + king.row);
         for (Piece piece : simPieces) {
             if (piece.color != king.color && piece.canMove(king.col, king.row)) {
                 return true;
@@ -176,15 +178,21 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
     public boolean isKingInCheck() {
-        Piece king = getKing(true); 
-       if(activeP!=null && activeP.canMove(king.col, king.row)){
-           checkingP = activeP;
-           return true;
-       }
-       else{
-           checkingP = null;
-       }
-       return false;
+        Piece king = getKing(true);
+        if (activeP != null && activeP.canMove(king.col, king.row)) {
+            checkingP = activeP;
+            return true;
+        } else if (activeP != null && activeP.canMove(king.col, king.row)== false) {
+            for (Piece piece : simPieces) {
+                if (piece.canMove(king.col, king.row)) {
+                    checkingP = piece;
+                    return true;
+                }
+            }
+        } else {
+            checkingP = null;
+        }
+        return false;
     }
 
     private Piece getKing(boolean opponent) {
@@ -309,9 +317,6 @@ public class GamePanel extends JPanel implements Runnable {
                         }
                     }
                 }
-            } else {
-                // The checking piece is Knight
-
             }
         }
 
@@ -387,7 +392,7 @@ public class GamePanel extends JPanel implements Runnable {
         return false;
     }
 
-    private void checkCastling() {
+    public void checkCastling() {
         if (castlingP != null) {
             if (castlingP.col == 0) {
                 castlingP.col = 3;
@@ -399,7 +404,7 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
     public void changePlayer() {
-        
+
     }
 
     public boolean canPromote() {
@@ -454,7 +459,6 @@ public class GamePanel extends JPanel implements Runnable {
         board.draw(g2);
         //pieces
 
-
         if (activeP != null) {
 
             if (availableCaptures != null) {
@@ -508,15 +512,15 @@ public class GamePanel extends JPanel implements Runnable {
         } else {
             if (currentColor == WHITE) {
                 g2.drawString("White's turn", 672, 450);
-                if (checkingP!=null && checkingP.color == BLACK) {
+                if (checkingP != null && checkingP.color == BLACK) {
                     g2.setColor(Color.red);
                     g2.drawString("The King", 672, 550);
                     g2.drawString("Is in check", 672, 600);
                 }
             } else {
                 g2.drawString("Black's turn", 672, 250);
-                
-                if (checkingP!=null && checkingP.color == WHITE) {
+
+                if (checkingP != null && checkingP.color == WHITE) {
                     g2.setColor(Color.red);
                     g2.drawString("The King", 672, 100);
                     g2.drawString("Is in check", 672, 150);

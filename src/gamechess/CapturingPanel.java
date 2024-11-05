@@ -20,6 +20,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JTextArea;
 import static gamechess.GameChess.LearnMode;
+import static gamechess.GameChess.NextMode;
 import static gamechess.GamePanel.BLACK;
 import static gamechess.GamePanel.HEIGHT;
 import static gamechess.GamePanel.WHITE;
@@ -27,6 +28,7 @@ import static gamechess.GamePanel.WIDTH;
 import static gamechess.GamePanel.castlingP;
 import static gamechess.GamePanel.pieces;
 import static gamechess.GamePanel.simPieces;
+import learnmode.BackNoYes1;
 import pieces.Bishop;
 import pieces.King;
 import pieces.Knight;
@@ -42,6 +44,7 @@ public class CapturingPanel extends GamePanel {
     private JTextArea messageArea; // Khai báo JLabel
     private boolean isInteractionEnabled = false;
     private int click = 0;
+    private int ok = 0;
 
     public CapturingPanel(JFrame frame) {
         super(frame); // Gọi constructor của GamePanel với JFrame
@@ -83,8 +86,8 @@ public class CapturingPanel extends GamePanel {
         backButton = new JButton("Back");
         backButton.setBounds(WIDTH - 100, HEIGHT + 110 - 100, 80, 30); // Đặt vị trí và kích thước
         backButton.addActionListener(e -> {
-            frame.dispose(); // Giải phóng tài nguyên của cửa sổ hiện tại
-            LearnMode(); // Gọi hàm Interface() để mở giao diện mới
+            BackNoYes1 confirmationDialog = new BackNoYes1(frame); // Truyền frame chính vào
+            confirmationDialog.setVisible(true);
         }); // Gọi hàm Interface() khi nhấn nút
         backButton.setFocusable(false); // Tắt tính năng tiêu điểm cho nút
 
@@ -107,6 +110,7 @@ public class CapturingPanel extends GamePanel {
     public void changePlayer() {
         super.changePlayer();
         isInteractionEnabled = false;
+        ok = 1;
         if (currentColor == WHITE) {
             currentColor = BLACK;
             // Reset black's two stepped status
@@ -130,6 +134,11 @@ public class CapturingPanel extends GamePanel {
     @Override
     public void update() {
         super.update();
+        if(ok==1){
+        NextMode();
+        frame.dispose();
+        ok = 0;
+        }
         if (isInteractionEnabled) {
             if (promotion) {
                 promoting();

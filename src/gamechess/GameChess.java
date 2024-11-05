@@ -6,7 +6,9 @@ package gamechess;
 
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
+import learnmode.BackNoYes;
 import learnmode.LearnModeScreen;
+import learnmode.NextLesson;
 
 public class GameChess {
 
@@ -40,6 +42,17 @@ public class GameChess {
 
     public static void LearnMode() {
         LearnModeScreen startScreen = new LearnModeScreen();
+        startScreen.setVisible(true);
+    }
+
+    public static void NextMode() {
+        try {
+            // Chờ 10 giây (10000 milliseconds)
+            Thread.sleep(1500);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        NextLesson startScreen = new NextLesson();
         startScreen.setVisible(true);
     }
 
@@ -250,6 +263,7 @@ public class GameChess {
 
         gp.launchGame();
     }
+
     public static void CastlingQueenLearn() {
         JFrame window = new JFrame("CastlingQueen Learn");
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -265,6 +279,7 @@ public class GameChess {
 
         gp.launchGame();
     }
+
     public static void PromotionLearn() {
         JFrame window = new JFrame("Promotion Learn");
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -280,6 +295,7 @@ public class GameChess {
 
         gp.launchGame();
     }
+
     public static void EnPassantLearn() {
         JFrame window = new JFrame("EnPassant Learn");
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -287,6 +303,22 @@ public class GameChess {
         // Add GamePanel to the window        
 
         EnPassantPanel gp = new EnPassantPanel(window);
+        window.add(gp);
+        window.pack();
+
+        window.setLocationRelativeTo(null);
+        window.setVisible(true);
+
+        gp.launchGame();
+    }
+
+    public static void AIGame() {
+        JFrame window = new JFrame("AI game");
+        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        window.setResizable(false);
+        // Add GamePanel to the window        
+
+        GamePanelAI gp = new GamePanelAI(window);
         window.add(gp);
         window.pack();
 

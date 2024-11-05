@@ -23,6 +23,7 @@ import static gamechess.BishopPanel.HEIGHT;
 import static gamechess.BishopPanel.WHITE;
 import static gamechess.BishopPanel.WIDTH;
 import static gamechess.BishopPanel.pieces;
+import learnmode.BackNoYes;
 import pieces.Bishop;
 import pieces.King;
 import pieces.Knight;
@@ -32,6 +33,7 @@ import pieces.Queen;
 import pieces.Rook;
 
 public class GamePanelMain extends GamePanel {
+
     private JButton nextButton;
     private JButton backButton;
     private JTextArea messageArea; // Khai báo JLabel
@@ -40,13 +42,13 @@ public class GamePanelMain extends GamePanel {
 
     public GamePanelMain(JFrame frame) {
         super(frame); // Gọi constructor của GamePanel với JFrame
-        
+
         // Khởi tạo nút Back
         backButton = new JButton("Back");
         backButton.setBounds(WIDTH - 100, HEIGHT - 50, 80, 30); // Đặt vị trí và kích thước
         backButton.addActionListener(e -> {
-            frame.dispose(); // Giải phóng tài nguyên của cửa sổ hiện tại
-            Interface(); // Gọi hàm Interface() để mở giao diện mới
+            BackNoYes confirmationDialog = new BackNoYes(frame); // Truyền frame chính vào
+            confirmationDialog.setVisible(true);
         }); // Gọi hàm Interface() khi nhấn nút
         backButton.setFocusable(false); // Tắt tính năng tiêu điểm cho nút
 
@@ -93,7 +95,7 @@ public class GamePanelMain extends GamePanel {
         pieces.add(new Queen(BLACK, 3, 0));
         pieces.add(new King(BLACK, 4, 0));
     }
-    
+
     @Override
     public void changePlayer() {
         super.changePlayer();
@@ -116,7 +118,7 @@ public class GamePanelMain extends GamePanel {
         }
         activeP = null;
     }
-    
+
     @Override
     public void update() {
         super.update();
@@ -158,8 +160,7 @@ public class GamePanelMain extends GamePanel {
                         //System.out.println(isKingInCheck());
                         if (isKingInCheck() && isCheckmate()) {
                             gameOver = true;
-                        } 
-                        else if (isStalemate() && isKingInCheck() == false) {
+                        } else if (isStalemate() && isKingInCheck() == false) {
                             stalemate = true;
                         } else { // The game is still going on
                             if (canPromote() == true) {
@@ -183,14 +184,14 @@ public class GamePanelMain extends GamePanel {
             }
         }
     }
-    
+
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g); // Gọi phương thức của lớp cha
         Graphics2D g2 = (Graphics2D) g;
         for (Piece p : simPieces) {
             p.draw(g2);
-        }        
+        }
     }
 
 }

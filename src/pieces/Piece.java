@@ -19,24 +19,25 @@ import javax.imageio.ImageIO;
  *
  * @author Admin
  */
-public class Piece {
-    
+public class Piece implements Cloneable {
+
     public Type type;
     public BufferedImage image;
     public int x, y;
     public int col, row, preCol, preRow;
     public int color;
     public Piece hittingP;
-    public boolean moved , twoStepped;
+    public boolean moved, twoStepped;
 
     public Piece(int color, int col, int row) {
         this.color = color;
         this.col = col;
         this.row = row;
-        x = getX(col);
-        y = getY(row);
-        preCol = col;
-        preRow = row;
+        //
+        this.x = getX(col);
+        this.y = getY(row);
+        this.preCol = col;
+        this.preRow = row;
     }
 
     public BufferedImage getImage(String imagePath) {
@@ -75,14 +76,14 @@ public class Piece {
     }
 
     public void updatePosition() {
-        
+
         // To check En passant
-        if(type == Type.PAWN){
-            if(Math.abs(row-preRow)==2){
+        if (type == Type.PAWN) {
+            if (Math.abs(row - preRow) == 2) {
                 twoStepped = true;
             }
         }
-        
+
         x = getX(col);
         y = getY(row);
         preCol = getCol(x);
@@ -162,7 +163,7 @@ public class Piece {
             for (int c = preCol - 1; c > targetCol; c--) {
                 int diff = Math.abs(c - preCol);
                 for (Piece piece : GamePanel.simPieces) {
-                    if(piece.col == c && piece.row == preRow - diff){
+                    if (piece.col == c && piece.row == preRow - diff) {
                         hittingP = piece;
                         return true;
                     }
@@ -172,13 +173,13 @@ public class Piece {
             for (int c = preCol + 1; c < targetCol; c++) {
                 int diff = Math.abs(c - preCol);
                 for (Piece piece : GamePanel.simPieces) {
-                    if(piece.col == c && piece.row == preRow - diff){
+                    if (piece.col == c && piece.row == preRow - diff) {
                         hittingP = piece;
                         return true;
                     }
                 }
             }
-            
+
         }
 
         if (targetRow > preRow) {
@@ -186,17 +187,17 @@ public class Piece {
             for (int c = preCol - 1; c > targetCol; c--) {
                 int diff = Math.abs(c - preCol);
                 for (Piece piece : GamePanel.simPieces) {
-                    if(piece.col == c && piece.row == preRow + diff){
+                    if (piece.col == c && piece.row == preRow + diff) {
                         hittingP = piece;
                         return true;
                     }
                 }
             }
             // Down right
-           for (int c = preCol + 1; c < targetCol; c++) {
+            for (int c = preCol + 1; c < targetCol; c++) {
                 int diff = Math.abs(c - preCol);
                 for (Piece piece : GamePanel.simPieces) {
-                    if(piece.col == c && piece.row == preRow + diff){
+                    if (piece.col == c && piece.row == preRow + diff) {
                         hittingP = piece;
                         return true;
                     }
@@ -204,7 +205,7 @@ public class Piece {
             }
         }
         return false;
-        
+
     }
 
     public Piece getHittingP(int targetCol, int targetRow) {
@@ -272,5 +273,29 @@ public class Piece {
 
     public void draw(Graphics2D g2) {
         g2.drawImage(image, x, y, Board.SQUARE_SIZE, Board.SQUARE_SIZE, null);
+    }
+
+    @Override
+    public Piece clone() {
+        try {
+            Piece cloned = (Piece) super.clone();
+
+            // Sao chép sâu cho các thuộc tính cần thiết
+            cloned.type = this.type;
+            cloned.color = this.color;
+            cloned.col = this.col;
+            cloned.row = this.row;
+            cloned.x = this.x;
+            cloned.y = this.y;
+
+            // Sao chép bất kỳ thuộc tính đối tượng nào khác, nếu có
+            // Thêm mã sao chép sâu cho các thuộc tính khác nếu cần thiết
+
+            return cloned;
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+            return null;
+        }
+
     }
 }
