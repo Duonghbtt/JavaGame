@@ -101,7 +101,6 @@ public class StalematePanel extends GamePanel {
         // Thực hiện các thay đổi riêng cho CapturingPanel nếu cần
         pieces.add(new Rook(WHITE, 6, 5));
         pieces.add(new Pawn(WHITE, 7, 5));
-        pieces.add(new Pawn(BLACK, 7, 4));
         pieces.add(new King(WHITE, 5, 2));
         pieces.add(new King(BLACK, 7, 0));
     }

@@ -44,7 +44,6 @@ public class King extends Piece {
                     }
                 }
             }
-
             // Left Castling
               if (targetCol == preCol -2 && targetRow == preRow && pieceIsOnStraightLine(targetCol, targetRow) == false) {
                 Piece p[] = new Piece[2];

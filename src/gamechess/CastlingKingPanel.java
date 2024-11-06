@@ -47,7 +47,7 @@ public class CastlingKingPanel extends GamePanel {
     private int ok = 0;
 
     public CastlingKingPanel(JFrame frame) {
-        super(frame); // Gọi constructor của GamePanel với JFrame
+        super(frame);
         setPreferredSize(new Dimension(WIDTH, HEIGHT + 110));
         setLayout(null); // Sử dụng layout null để đặt vị trí cho nút
         // Khởi tạo và thêm JLabel

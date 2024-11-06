@@ -159,10 +159,12 @@ public class GamePanelAI extends GamePanel {
                             if (castlingP != null) {
                                 castlingP.updatePosition();
                             }
-
+                            isKingInCheck();
+                            if(checkingP!=null) System.out.println("checkingP WHITE" + checkingP.type + " " + checkingP.col + " " + checkingP.row  );
+                            System.out.println(isKingInCheck());
+                            if(checkingP!=null) System.out.println(isCheckmate());
                             if (isKingInCheck() && isCheckmate()) {
                                 gameOver = true;
-
                             } else if (isStalemate() && isKingInCheck() == false) {
                                 stalemate = true;
                             } else { // The game is still going on
@@ -172,7 +174,6 @@ public class GamePanelAI extends GamePanel {
                                     changePlayer();
                                 }
                             }
-
                         } else {
                             // the move is not valid so reset everything
                             copyPieces(pieces, simPieces);
@@ -236,13 +237,9 @@ public class GamePanelAI extends GamePanel {
         }
 
         if (!possibleMoves.isEmpty()) {
-            copyPieces(pieces, simPieces);
             // Lấy nước đi ngẫu nhiên từ các nước đi hợp lệ
             Random rand = new Random();
             Point randomMove = possibleMoves.get(rand.nextInt(possibleMoves.size()));
-
-            System.out.println("Nước đi AI: " + activeP.type + " từ " + activeP.col + ", " + activeP.row + " tới " + randomMove.x + ", " + randomMove.y);
-
             // Kiểm tra xem ô mới có chứa quân cờ không
             Piece capturedPiece = null;
             for (Piece p : simPieces) {
@@ -251,7 +248,11 @@ public class GamePanelAI extends GamePanel {
                     break;
                 }
             }
-
+            for (Piece it : simPieces) {
+                if (it.type == Type.KING && it.color == BLACK) {
+                    System.out.println("Con vua hiện đang: " + it.type + " từ " + it.col + " " + it.row);
+                }
+            }
             // Cập nhật vị trí của quân cờ
             simPieces.remove(activeP.getIndex());
             activeP.x = randomMove.x * Board.SQUARE_SIZE;
@@ -259,21 +260,21 @@ public class GamePanelAI extends GamePanel {
             activeP.col = activeP.getCol(activeP.x);
             activeP.row = activeP.getRow(activeP.y);
             activeP.updatePosition();
-
             if (castlingP != null) {
                 castlingP.updatePosition();
             }
-
             simPieces.add(activeP); // Thêm quân cờ trở lại danh sách
-
             // Nếu có quân bị bắt, xóa nó khỏi danh sách
             if (capturedPiece != null) {
                 simPieces.remove(capturedPiece.getIndex());
-                System.out.println("AI đã bắt quân: " + capturedPiece.type + " tại ô " + randomMove.x + ", " + randomMove.y);
             }
-
             // Cập nhật danh sách quân cờ
             copyPieces(simPieces, pieces);
+            for (Piece it : simPieces) {
+                if (it.type == Type.KING && it.color == BLACK) {
+                    System.out.println("Con vua hiện đang: " + it.type + " từ " + it.col + " " + it.row);
+                }
+            }
             if (isKingInCheck() && isCheckmate()) {
                 gameOver = true;
             } else if (isStalemate() && isKingInCheck() == false) {
@@ -282,12 +283,15 @@ public class GamePanelAI extends GamePanel {
                 if (canPromote() == true) {
                     promotion = true;
                 } else {
+                    activeP = null;
                     changePlayer();
                 }
             }
+            
             availableMoves = null;
             availableCaptures = null;
         }
+        
     }
 
     private void simulateAI() {
@@ -297,60 +301,76 @@ public class GamePanelAI extends GamePanel {
             Point randomMove = iter.next();
             boolean validSquare = false;
             Piece capturedPiece = null;
+
+            // Kiểm tra nếu có quân cờ đối thủ tại vị trí muốn đi
             for (Piece p : simPieces) {
                 if (p.col == randomMove.x && p.row == randomMove.y) {
                     capturedPiece = p; // Ghi lại quân cờ bị bắt
                     break;
                 }
             }
-            // Khôi phục vị trí của quân cờ tạm thời
+            // Lưu vị trí ban đầu của activeP
             int originalCol = activeP.col;
             int originalRow = activeP.row;
-            System.out.println("Xuất phát từ : "+activeP.type + " " + activeP.col + " " + activeP.row);
-            simPieces.remove(activeP.getIndex());
+
+            // Xóa activeP từ simPieces tại vị trí hiện tại
+            int activePIndex = activeP.getIndex();
+            if (activePIndex != -1) {
+                simPieces.remove(activePIndex); // Chỉ xóa khi tìm thấy activeP
+            }
+            System.out.println("Xuat phat activeP: " + activeP.type + " " + activeP.col + " " + activeP.row);
+
+            // Cập nhật vị trí mới của activeP
             activeP.x = randomMove.x * Board.SQUARE_SIZE;
             activeP.y = randomMove.y * Board.SQUARE_SIZE;
             activeP.col = activeP.getCol(activeP.x);
             activeP.row = activeP.getRow(activeP.y);
-            simPieces.add(activeP);
-            
+            simPieces.add(activeP); // Thêm lại activeP vào danh sách
+            System.out.println("Cập nhật activeP: " + activeP.type + " " + activeP.col + " " + activeP.row);
             // Kiểm tra tính hợp lệ của nước đi
             if (activeP.canMove(activeP.col, activeP.row)) {
-                
-                checkCastling(); // Kiểm tra trường hợp đi tướng
-                System.out.println(isIllegal(activeP));
-                System.out.println(opponentCanCaptureKing());
+                checkCastling(); // Kiểm tra trường hợp nhập thành
                 if (capturedPiece != null) {
-                    simPieces.remove(capturedPiece.getIndex());
-                    System.out.println("AI đã bắt quân: " + capturedPiece.type + " tại ô " + randomMove.x + ", " + randomMove.y);
+                    int capturedIndex = capturedPiece.getIndex();
+                    if (capturedIndex != -1) {
+                        System.out.println("Xóa captured: " + capturedPiece.type + " " + capturedPiece.col + " " + capturedPiece.row);
+                        simPieces.remove(capturedIndex); // Xóa quân cờ bị bắt
+                    }
                 }
                 
-                // Kiểm tra nếu quân cờ không gây nguy hiểm cho quân vua
+                System.out.println(isIllegal(activeP));
+                System.out.println(opponentCanCaptureKing());
                 if (!isIllegal(activeP) && !opponentCanCaptureKing()) {
                     validSquare = true; // Nước đi hợp lệ
                 }
-                System.out.println("đã check");
-
             }
 
-            if (validSquare == false) {
-                System.out.println("Xóa nước đi");
+            // Khôi phục activeP về vị trí ban đầu
+            if (!validSquare) {
+                System.out.println("xóa nước đi");
                 iter.remove(); // Xóa nước đi không hợp lệ
             }
-            // Khôi phục lại quân cờ về vị trí ban đầu
+
+            // Phục hồi activeP về vị trí ban đầu
             activeP.col = originalCol;
             activeP.row = originalRow;
             activeP.x = originalCol * Board.SQUARE_SIZE;
             activeP.y = originalRow * Board.SQUARE_SIZE;
+            activeP.updatePosition();
+            if(capturedPiece!=null) simPieces.add(capturedPiece);
+            // Phục hồi danh sách simPieces ban đầu
             copyPieces(pieces, simPieces);
         }
 
-        // Cập nhật danh sách nước đi khả thi
+        // Cập nhật lại danh sách nước đi khả thi cho possibleMoves
         possibleMoves.clear();
         possibleMoves.addAll(checkpossibleMoves);
-        activeP = tmp; // Khôi phục quân cờ gốc
+
+        // Khôi phục lại activeP về quân cờ ban đầu
+        activeP = tmp;
         copyPieces(pieces, simPieces);
     }
+
 
     private void promotingAI() {
         Random random = new Random();
@@ -381,6 +401,7 @@ public class GamePanelAI extends GamePanel {
         promotion = false;
         changePlayer();
     }
+
 
     @Override
     public void paintComponent(Graphics g

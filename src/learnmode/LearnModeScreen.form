@@ -58,7 +58,7 @@
                           <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace pref="101" max="32767" attributes="0"/>
+                  <EmptySpace pref="104" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
                           <Component id="jPanel4" min="-2" max="-2" attributes="0"/>
@@ -139,10 +139,10 @@
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
-                  <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace max="32767" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="122" max="-2" attributes="0"/>
                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="140" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -183,7 +183,7 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="MOVES"/>
+                <Property name="text" type="java.lang.String" value="DI CHUY&#x1ec2;N"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JButton" name="PawnLearn">
@@ -194,7 +194,7 @@
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/images/bp.png"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Pawn"/>
+                <Property name="text" type="java.lang.String" value="T&#x1ed1;t"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="PawnLearnActionPerformed"/>
@@ -208,7 +208,7 @@
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/images/bN.png"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Knight"/>
+                <Property name="text" type="java.lang.String" value="M&#xe3;"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="KnightLearnActionPerformed"/>
@@ -222,7 +222,7 @@
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/images/bR.png"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Rook"/>
+                <Property name="text" type="java.lang.String" value="Xe"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="RookLearnActionPerformed"/>
@@ -236,7 +236,7 @@
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/images/bB.png"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Bishop"/>
+                <Property name="text" type="java.lang.String" value="T&#x1b0;&#x1ee3;ng"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BishopLearnActionPerformed"/>
@@ -250,7 +250,7 @@
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/images/bQ.png"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Queen"/>
+                <Property name="text" type="java.lang.String" value="H&#x1ead;u"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="QueenLearnActionPerformed"/>
@@ -264,7 +264,7 @@
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/images/bK.png"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="King"/>
+                <Property name="text" type="java.lang.String" value="Vua"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="KingLearnActionPerformed"/>
@@ -299,20 +299,20 @@
                               </Group>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
                               <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace pref="55" max="32767" attributes="0"/>
+                      <EmptySpace pref="69" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                       <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="CapturingLearn" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
                       <Component id="NotationLearn" min="-2" max="-2" attributes="0"/>
@@ -333,7 +333,7 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="BASIC CONCEPTS"/>
+                <Property name="text" type="java.lang.String" value="KH&#xc1;I NI&#x1ec6;M C&#x1a0; B&#x1ea2;N"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JButton" name="CapturingLearn">
@@ -344,7 +344,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Serif" size="14" style="1"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Capturing"/>
+                <Property name="text" type="java.lang.String" value="B&#x1eaf;t qu&#xe2;n"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CapturingLearnActionPerformed"/>
@@ -358,7 +358,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Serif" size="14" style="1"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Notation"/>
+                <Property name="text" type="java.lang.String" value="K&#xfd; hi&#x1ec7;u"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="NotationLearnActionPerformed"/>
@@ -435,7 +435,7 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="CHECK"/>
+                <Property name="text" type="java.lang.String" value="KI&#x1ec2;M TRA"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JButton" name="CheckLearn">
@@ -446,7 +446,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Serif" size="14" style="1"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Check"/>
+                <Property name="text" type="java.lang.String" value="Chi&#x1ebf;u"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CheckLearnActionPerformed"/>
@@ -460,7 +460,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Serif" size="14" style="1"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Getting out of check"/>
+                <Property name="text" type="java.lang.String" value="Tho&#xe1;t kh&#x1ecf;i chi&#x1ebf;u"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="GetOutLearnActionPerformed"/>
@@ -474,7 +474,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Serif" size="14" style="1"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Stalemate"/>
+                <Property name="text" type="java.lang.String" value="B&#x1ebf; t&#x1eaf;c / H&#xf2;a"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="StalemateLearnActionPerformed"/>
@@ -488,7 +488,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Serif" size="14" style="1"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Checkmate"/>
+                <Property name="text" type="java.lang.String" value="Chi&#x1ebf;u t&#x1b0;&#x1edb;ng"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CheckmateLearnActionPerformed"/>
@@ -514,19 +514,22 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
-                      <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="1" attributes="0">
                       <EmptySpace pref="26" max="32767" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="CastlingKingLearn" alignment="0" max="32767" attributes="0"/>
-                          <Component id="CastlingQueenLearn" alignment="0" max="32767" attributes="0"/>
-                          <Component id="PromotionLearn" alignment="0" max="32767" attributes="0"/>
-                          <Component id="EnPassantLearn" alignment="0" min="-2" pref="193" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="1" attributes="0">
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="CastlingKingLearn" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="CastlingQueenLearn" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="PromotionLearn" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="EnPassantLearn" alignment="0" min="-2" pref="193" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
-                      <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -560,7 +563,7 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="SPECIAL MOVES"/>
+                <Property name="text" type="java.lang.String" value="Di chuy&#x1ec3;n &#x111;&#x1eb7;c bi&#x1ec7;t"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JButton" name="CastlingQueenLearn">
@@ -571,7 +574,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Serif" size="14" style="1"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Castling - Queen side"/>
+                <Property name="text" type="java.lang.String" value="Nh&#x1ead;p th&#xe0;nh b&#xea;n h&#x1ead;u"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CastlingQueenLearnActionPerformed"/>
@@ -585,7 +588,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Serif" size="14" style="1"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Promotion"/>
+                <Property name="text" type="java.lang.String" value="Phong c&#x1ea5;p qu&#xe2;n t&#x1ed1;t"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="PromotionLearnActionPerformed"/>
@@ -599,7 +602,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Serif" size="14" style="1"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="En Passant"/>
+                <Property name="text" type="java.lang.String" value="B&#x1eaf;t t&#x1ed1;t qua &#x111;&#x1b0;&#x1edd;ng"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="EnPassantLearnActionPerformed"/>
@@ -613,7 +616,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Serif" size="14" style="1"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Castling - King side"/>
+                <Property name="text" type="java.lang.String" value="Nh&#x1ead;p th&#xe0;nh b&#xea;n vua"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CastlingKingLearnActionPerformed"/>
@@ -637,7 +640,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Serif" size="24" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="SELECT A LESSON TO LEARN"/>
+            <Property name="text" type="java.lang.String" value="CH&#x1ecc;N M&#x1ed8;T B&#xc0;I H&#x1ecc;C &#x110;&#x1ec2; H&#x1ecc;C"/>
           </Properties>
         </Component>
       </SubComponents>

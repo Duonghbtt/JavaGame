@@ -34,10 +34,10 @@ public class Piece implements Cloneable {
         this.col = col;
         this.row = row;
         //
-        this.x = getX(col);
-        this.y = getY(row);
-        this.preCol = col;
-        this.preRow = row;
+        x = getX(col);
+        y = getY(row);
+        preCol = col;
+        preRow = row;
     }
 
     public BufferedImage getImage(String imagePath) {
@@ -72,7 +72,7 @@ public class Piece implements Cloneable {
                 return index;
             }
         }
-        return 0;
+        return -1;
     }
 
     public void updatePosition() {
@@ -117,8 +117,7 @@ public class Piece implements Cloneable {
     }
 
     public boolean pieceIsOnStraightLine(int targetCol, int targetRow) {
-        // When this piece is moving to the left
-
+        // Khi sang trái
         for (int c = preCol - 1; c > targetCol; c--) {
             for (Piece piece : GamePanel.simPieces) {
                 if (piece.col == c && piece.row == targetRow) {
@@ -127,7 +126,7 @@ public class Piece implements Cloneable {
                 }
             }
         }
-        // When this piece is moving to the right
+        // Khi sang phải
         for (int c = preCol + 1; c < targetCol; c++) {
             for (Piece piece : GamePanel.simPieces) {
                 if (piece.col == c && piece.row == targetRow) {
@@ -136,7 +135,7 @@ public class Piece implements Cloneable {
                 }
             }
         }
-        // When this piece is moving up
+        // Khi đi lên
         for (int r = preRow - 1; r > targetRow; r--) {
             for (Piece piece : GamePanel.simPieces) {
                 if (piece.col == targetCol && piece.row == r) {
@@ -145,7 +144,7 @@ public class Piece implements Cloneable {
                 }
             }
         }
-        // When this piece is moving down
+        // Khi xuống dưới
         for (int r = preRow + 1; r < targetRow; r++) {
             for (Piece piece : GamePanel.simPieces) {
                 if (piece.col == targetCol && piece.row == r) {
@@ -181,7 +180,6 @@ public class Piece implements Cloneable {
             }
 
         }
-
         if (targetRow > preRow) {
             //Down left
             for (int c = preCol - 1; c > targetCol; c--) {
@@ -205,7 +203,6 @@ public class Piece implements Cloneable {
             }
         }
         return false;
-
     }
 
     public Piece getHittingP(int targetCol, int targetRow) {
@@ -219,10 +216,10 @@ public class Piece implements Cloneable {
 
     public boolean isValidSquare(int targetCol, int targetRow) {
         hittingP = getHittingP(targetCol, targetRow);
-        if (hittingP == null) { // This square is VACANT
+        if (hittingP == null) { 
             return true;
-        } else {// This square is OCCUPIED
-            if (hittingP.color != this.color) { // If the color is different, it can be captured
+        } else {
+            if (hittingP.color != this.color) { 
                 return true;
             } else {
                 hittingP = null;
@@ -233,10 +230,10 @@ public class Piece implements Cloneable {
 
     public int checkValidSquare(int targetCol, int targetRow) {
         hittingP = getHittingP(targetCol, targetRow);
-        if (hittingP == null) { // This square is VACANT
+        if (hittingP == null) {
             return 1;
-        } else {// This square is OCCUPIED
-            if (hittingP.color != this.color) { // If the color is different, it can be captured
+        } else {
+            if (hittingP.color != this.color) { 
                 return 2;
             } else {
                 hittingP = null;
@@ -290,7 +287,6 @@ public class Piece implements Cloneable {
 
             // Sao chép bất kỳ thuộc tính đối tượng nào khác, nếu có
             // Thêm mã sao chép sâu cho các thuộc tính khác nếu cần thiết
-
             return cloned;
         } catch (CloneNotSupportedException e) {
             e.printStackTrace();

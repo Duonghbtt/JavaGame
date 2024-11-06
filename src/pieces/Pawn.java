@@ -27,34 +27,31 @@ public class Pawn extends Piece{
     
     public boolean canMove(int targetCol, int targetRow){
         if(isWithinBoard(targetCol,targetRow) && isSameSquare(targetCol,targetRow)==false){
-            // Difine the move value based on its color
             int moveValue;
             if(color == GamePanel.WHITE){
                 moveValue = -1;
             }else{
                 moveValue = 1;
             }
-            
-            // Check the hittng piece
+             // Kiểm tra quân cờ tại vị trí đích.
             hittingP = getHittingP(targetCol, targetRow);
-            
-            // 1 square movment
+            // Di chuyển 1 ô về phía trước
             if(targetCol == preCol && targetRow == preRow + moveValue && hittingP == null){
                 return true;
             }
             
-            // 2square.movement
+            // Di chuyển hai ô về phía trước, chỉ khi quân cờ chưa từng di chuyển và không có vật cản
             if(targetCol == preCol && targetRow == preRow + moveValue*2 && hittingP == null && moved == false &&
                     pieceIsOnStraightLine(targetCol,targetRow) == false){
                 return true;
             }
             
-            // Diagonal movement & Capture (if a piece is on a square diagonally in front of it)
+            // Bắt quân theo đường chéo
             if(Math.abs(targetCol - preCol) == 1 && targetRow == preRow + moveValue && hittingP != null && hittingP.color != color){
                 return true;
             }
             
-            // En Pasant
+            // Bắt tốt qua đường
             if(Math.abs(targetCol - preCol) == 1 && targetRow == preRow + moveValue){
                 for(Piece piece: GamePanel.simPieces){
                     if(piece.col == targetCol && piece.row == preRow && piece.twoStepped==true){

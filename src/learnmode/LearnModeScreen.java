@@ -86,11 +86,11 @@ public class LearnModeScreen extends javax.swing.JFrame {
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("MOVES");
+        jLabel1.setText("DI CHUYỂN");
 
         PawnLearn.setFont(new java.awt.Font("Serif", 1, 12)); // NOI18N
         PawnLearn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/bp.png"))); // NOI18N
-        PawnLearn.setText("Pawn");
+        PawnLearn.setText("Tốt");
         PawnLearn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 PawnLearnActionPerformed(evt);
@@ -99,7 +99,7 @@ public class LearnModeScreen extends javax.swing.JFrame {
 
         KnightLearn.setFont(new java.awt.Font("Serif", 1, 12)); // NOI18N
         KnightLearn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/bN.png"))); // NOI18N
-        KnightLearn.setText("Knight");
+        KnightLearn.setText("Mã");
         KnightLearn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 KnightLearnActionPerformed(evt);
@@ -108,7 +108,7 @@ public class LearnModeScreen extends javax.swing.JFrame {
 
         RookLearn.setFont(new java.awt.Font("Serif", 1, 12)); // NOI18N
         RookLearn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/bR.png"))); // NOI18N
-        RookLearn.setText("Rook");
+        RookLearn.setText("Xe");
         RookLearn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 RookLearnActionPerformed(evt);
@@ -117,7 +117,7 @@ public class LearnModeScreen extends javax.swing.JFrame {
 
         BishopLearn.setFont(new java.awt.Font("Serif", 1, 12)); // NOI18N
         BishopLearn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/bB.png"))); // NOI18N
-        BishopLearn.setText("Bishop");
+        BishopLearn.setText("Tượng");
         BishopLearn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BishopLearnActionPerformed(evt);
@@ -126,7 +126,7 @@ public class LearnModeScreen extends javax.swing.JFrame {
 
         QueenLearn.setFont(new java.awt.Font("Serif", 1, 12)); // NOI18N
         QueenLearn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/bQ.png"))); // NOI18N
-        QueenLearn.setText("Queen");
+        QueenLearn.setText("Hậu");
         QueenLearn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 QueenLearnActionPerformed(evt);
@@ -135,7 +135,7 @@ public class LearnModeScreen extends javax.swing.JFrame {
 
         KingLearn.setFont(new java.awt.Font("Serif", 1, 12)); // NOI18N
         KingLearn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/bK.png"))); // NOI18N
-        KingLearn.setText("King");
+        KingLearn.setText("Vua");
         KingLearn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 KingLearnActionPerformed(evt);
@@ -158,10 +158,10 @@ public class LearnModeScreen extends javax.swing.JFrame {
                     .addComponent(RookLearn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(KingLearn, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(122, 122, 122)
                 .addComponent(jLabel1)
-                .addGap(140, 140, 140))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -189,11 +189,11 @@ public class LearnModeScreen extends javax.swing.JFrame {
         jLabel2.setBackground(new java.awt.Color(255, 255, 255));
         jLabel2.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("BASIC CONCEPTS");
+        jLabel2.setText("KHÁI NIỆM CƠ BẢN");
 
         CapturingLearn.setBackground(new java.awt.Color(204, 255, 204));
         CapturingLearn.setFont(new java.awt.Font("Serif", 1, 14)); // NOI18N
-        CapturingLearn.setText("Capturing");
+        CapturingLearn.setText("Bắt quân");
         CapturingLearn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CapturingLearnActionPerformed(evt);
@@ -202,7 +202,7 @@ public class LearnModeScreen extends javax.swing.JFrame {
 
         NotationLearn.setBackground(new java.awt.Color(204, 255, 204));
         NotationLearn.setFont(new java.awt.Font("Serif", 1, 14)); // NOI18N
-        NotationLearn.setText("Notation");
+        NotationLearn.setText("Ký hiệu");
         NotationLearn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 NotationLearnActionPerformed(evt);
@@ -221,16 +221,16 @@ public class LearnModeScreen extends javax.swing.JFrame {
                             .addComponent(CapturingLearn, javax.swing.GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)
                             .addComponent(NotationLearn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(62, 62, 62)
+                        .addGap(48, 48, 48)
                         .addComponent(jLabel2)))
-                .addContainerGap(55, Short.MAX_VALUE))
+                .addContainerGap(69, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(12, 12, 12)
                 .addComponent(jLabel2)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(CapturingLearn)
                 .addGap(28, 28, 28)
                 .addComponent(NotationLearn)
@@ -243,11 +243,11 @@ public class LearnModeScreen extends javax.swing.JFrame {
         jLabel3.setBackground(new java.awt.Color(255, 255, 255));
         jLabel3.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("CHECK");
+        jLabel3.setText("KIỂM TRA");
 
         CheckLearn.setBackground(new java.awt.Color(204, 255, 204));
         CheckLearn.setFont(new java.awt.Font("Serif", 1, 14)); // NOI18N
-        CheckLearn.setText("Check");
+        CheckLearn.setText("Chiếu");
         CheckLearn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CheckLearnActionPerformed(evt);
@@ -256,7 +256,7 @@ public class LearnModeScreen extends javax.swing.JFrame {
 
         GetOutLearn.setBackground(new java.awt.Color(204, 255, 204));
         GetOutLearn.setFont(new java.awt.Font("Serif", 1, 14)); // NOI18N
-        GetOutLearn.setText("Getting out of check");
+        GetOutLearn.setText("Thoát khỏi chiếu");
         GetOutLearn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 GetOutLearnActionPerformed(evt);
@@ -265,7 +265,7 @@ public class LearnModeScreen extends javax.swing.JFrame {
 
         StalemateLearn.setBackground(new java.awt.Color(204, 255, 204));
         StalemateLearn.setFont(new java.awt.Font("Serif", 1, 14)); // NOI18N
-        StalemateLearn.setText("Stalemate");
+        StalemateLearn.setText("Bế tắc / Hòa");
         StalemateLearn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 StalemateLearnActionPerformed(evt);
@@ -274,7 +274,7 @@ public class LearnModeScreen extends javax.swing.JFrame {
 
         CheckmateLearn.setBackground(new java.awt.Color(204, 255, 204));
         CheckmateLearn.setFont(new java.awt.Font("Serif", 1, 14)); // NOI18N
-        CheckmateLearn.setText("Checkmate");
+        CheckmateLearn.setText("Chiếu tướng");
         CheckmateLearn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CheckmateLearnActionPerformed(evt);
@@ -322,11 +322,11 @@ public class LearnModeScreen extends javax.swing.JFrame {
         jLabel4.setBackground(new java.awt.Color(255, 255, 255));
         jLabel4.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("SPECIAL MOVES");
+        jLabel4.setText("Di chuyển đặc biệt");
 
         CastlingQueenLearn.setBackground(new java.awt.Color(204, 255, 204));
         CastlingQueenLearn.setFont(new java.awt.Font("Serif", 1, 14)); // NOI18N
-        CastlingQueenLearn.setText("Castling - Queen side");
+        CastlingQueenLearn.setText("Nhập thành bên hậu");
         CastlingQueenLearn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CastlingQueenLearnActionPerformed(evt);
@@ -335,7 +335,7 @@ public class LearnModeScreen extends javax.swing.JFrame {
 
         PromotionLearn.setBackground(new java.awt.Color(204, 255, 204));
         PromotionLearn.setFont(new java.awt.Font("Serif", 1, 14)); // NOI18N
-        PromotionLearn.setText("Promotion");
+        PromotionLearn.setText("Phong cấp quân tốt");
         PromotionLearn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 PromotionLearnActionPerformed(evt);
@@ -344,7 +344,7 @@ public class LearnModeScreen extends javax.swing.JFrame {
 
         EnPassantLearn.setBackground(new java.awt.Color(204, 255, 204));
         EnPassantLearn.setFont(new java.awt.Font("Serif", 1, 14)); // NOI18N
-        EnPassantLearn.setText("En Passant");
+        EnPassantLearn.setText("Bắt tốt qua đường");
         EnPassantLearn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 EnPassantLearnActionPerformed(evt);
@@ -353,7 +353,7 @@ public class LearnModeScreen extends javax.swing.JFrame {
 
         CastlingKingLearn.setBackground(new java.awt.Color(204, 255, 204));
         CastlingKingLearn.setFont(new java.awt.Font("Serif", 1, 14)); // NOI18N
-        CastlingKingLearn.setText("Castling - King side");
+        CastlingKingLearn.setText("Nhập thành bên vua");
         CastlingKingLearn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CastlingKingLearnActionPerformed(evt);
@@ -365,17 +365,18 @@ public class LearnModeScreen extends javax.swing.JFrame {
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(37, 37, 37)
-                .addComponent(jLabel4)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addContainerGap(26, Short.MAX_VALUE)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(CastlingKingLearn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(CastlingQueenLearn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(PromotionLearn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(EnPassantLearn, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(21, 21, 21))
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(CastlingKingLearn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(CastlingQueenLearn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(PromotionLearn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(EnPassantLearn, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(21, 21, 21))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addGap(44, 44, 44))))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -402,7 +403,7 @@ public class LearnModeScreen extends javax.swing.JFrame {
         });
 
         jLabel5.setFont(new java.awt.Font("Serif", 1, 24)); // NOI18N
-        jLabel5.setText("SELECT A LESSON TO LEARN");
+        jLabel5.setText("CHỌN MỘT BÀI HỌC ĐỂ HỌC");
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -416,7 +417,7 @@ public class LearnModeScreen extends javax.swing.JFrame {
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGap(109, 109, 109)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 101, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 104, Short.MAX_VALUE)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)

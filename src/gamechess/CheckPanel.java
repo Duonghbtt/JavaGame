@@ -51,7 +51,7 @@ public class CheckPanel extends GamePanel {
         setPreferredSize(new Dimension(WIDTH, HEIGHT + 110));
         setLayout(null); // Sử dụng layout null để đặt vị trí cho nút
         // Khởi tạo và thêm JLabel
-        messageArea = new JTextArea(" Kiểm tra\n Quân vua bị chiếu khi bị quân địch tấn công ");
+        messageArea = new JTextArea(" Chiếu\n Quân vua bị chiếu khi bị quân địch tấn công ");
         messageArea.setBounds(0, 650, 770, 110); // Đặt vị trí và kích thước cho JTextArea
         messageArea.setForeground(Color.BLACK); // Thiết lập màu chữ
         messageArea.setFont(new Font("Serif", Font.BOLD, 18)); // Thiết lập font chữ
@@ -73,7 +73,7 @@ public class CheckPanel extends GamePanel {
                 click += 1;
                 System.out.println("Next button clicked");
                 
-                    messageArea.setText(" Kiểm tra\n Bây giờ hãy kiểm tra Vua của đối thủ bằng cạc di chuyển Xe của bạn từ d2 đến f2");
+                    messageArea.setText(" Chiếu\n Bây giờ hãy kiểm tra Vua của đối thủ bằng cạc di chuyển Xe của bạn từ d2 đến f2");
                 
                 if (click == 1) {
                     nextButton.setEnabled(false);

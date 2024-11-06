@@ -58,8 +58,8 @@ public class GamePanel extends JPanel implements Runnable {
     boolean gameOver;
     boolean stalemate;
 
-    public GamePanel(JFrame frame) {// Nhận JFrame trong constructor
-        this.frame = frame; // Gán đối tượng JFrame
+    public GamePanel(JFrame frame) {
+        this.frame = frame;
         setPreferredSize(new Dimension(WIDTH, HEIGHT));
         setBackground(new Color(139, 159, 97));
         addMouseMotionListener(mouse);
@@ -89,21 +89,21 @@ public class GamePanel extends JPanel implements Runnable {
     @Override
     public void run() {
         // Game loop
-        double drawInterval = 1000000000 / FPS;
-        double delta = 0;
-        long lastTime = System.nanoTime();
+        double drawInterval = 1000000000 / FPS; // Thời gian giữa các khung hình (FPS: frames per second)
+        double delta = 0; // Biến tích lũy để theo dõi thời gian
+        long lastTime = System.nanoTime(); // Thời gian hiện tại tính bằng nano giây
         long currentTime;
 
-        while (gameThread != null) {
-            currentTime = System.nanoTime();
+        while (gameThread != null) { // Khi luồng game còn hoạt động
+            currentTime = System.nanoTime(); // Lấy thời gian hiện tại
 
-            delta += (currentTime - lastTime) / drawInterval;
-            lastTime = currentTime;
+            delta += (currentTime - lastTime) / drawInterval; // Tính toán delta dựa trên thời gian trôi qua
+            lastTime = currentTime; // Cập nhật lastTime
 
-            if (delta >= 1) {
-                update();
-                repaint();
-                delta--;
+            if (delta >= 1) { // Nếu đủ thời gian để cập nhật
+                update(); // Cập nhật trạng thái trò chơi
+                repaint(); // Vẽ lại giao diện
+                delta--; // Giảm delta đi 1
             }
         }
     }
@@ -116,36 +116,26 @@ public class GamePanel extends JPanel implements Runnable {
 
         canMove = false;
         validSquare = false;
-
-        // Reset the piece list in every loop
-        // This is basically for restoeing the removed pieces during the simulation
+        // Trả lại danh sách quân cờ trong mỗi vòng lặp
         copyPieces(pieces, simPieces);
-
-        // Reset the castling piece's position
+        // Trả lại giá trị cho quân cờ nhập thành
         if (castlingP != null) {
             castlingP.col = castlingP.preCol;
             castlingP.x = castlingP.getX(castlingP.col);
             castlingP = null;
         }
-
-        // if a piece is being held, update its position
+        // nếu quân cờ đang được giữ thì cập nhật vị trí
         activeP.x = mouse.x - Board.HALF_SQUARE_SIZE;
         activeP.y = mouse.y - Board.HALF_SQUARE_SIZE;
         activeP.col = activeP.getCol(activeP.x);
         activeP.row = activeP.getRow(activeP.y);
-
-        // Check if the piece is hovering over a reachable square
         if (activeP.canMove(activeP.col, activeP.row)) {
             canMove = true;
-
-            // If hitting a piece, remove it from the list
             
             if (activeP.hittingP != null) {
                 simPieces.remove(activeP.hittingP.getIndex());
             }
-
             checkCastling();
-
             if (isIllegal(activeP) == false && opponentCanCaptureKing() == false) {
                 validSquare = true;
             }
@@ -154,7 +144,6 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
     public boolean isIllegal(Piece king) {
-        if(currentColor == BLACK) System.out.println("isIllegal "+king.type + " " + king.color + " " + king.col + " " + king.row);
         if (king.type == Type.KING) {
             for (Piece piece : simPieces) {
                 if (piece != king && piece.color != king.color && piece.canMove(king.col, king.row)) {
@@ -168,7 +157,6 @@ public class GamePanel extends JPanel implements Runnable {
 
     public boolean opponentCanCaptureKing() {
         Piece king = getKing(false);
-        if(currentColor == BLACK) System.out.println("oppp " + king.type + " " + king.color + " " + king.col + " " + king.row);
         for (Piece piece : simPieces) {
             if (piece.color != king.color && piece.canMove(king.col, king.row)) {
                 return true;
@@ -178,19 +166,19 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
     public boolean isKingInCheck() {
+        checkingP = null;
         Piece king = getKing(true);
         if (activeP != null && activeP.canMove(king.col, king.row)) {
+            
             checkingP = activeP;
             return true;
-        } else if (activeP != null && activeP.canMove(king.col, king.row)== false) {
+        } else if (activeP != null && activeP.canMove(king.col, king.row) == false) {
             for (Piece piece : simPieces) {
                 if (piece.canMove(king.col, king.row)) {
                     checkingP = piece;
                     return true;
                 }
             }
-        } else {
-            checkingP = null;
         }
         return false;
     }
@@ -217,17 +205,15 @@ public class GamePanel extends JPanel implements Runnable {
         if (kingCanMove(king)) {
             return false;
         } else {
-            // But you still hava a chance!!1
-            // Check if you can block the attack with your piece
-
-            // Check the position of the checking piece and the king in check
+            // Kiểm tra xem có thể chặn cuộc tấn công bằng quân cờ của mình không
+            // Kiểm tra vị trí của quân đang chiếu và quân vua
             int colDiff = Math.abs(checkingP.col - king.col);
             int rowDiff = Math.abs(checkingP.row - king.row);
 
             if (colDiff == 0) {
-                // The checking piece is attacking vertically
+                // Kiểm tra chiều dọc 
                 if (checkingP.row < king.row) {
-                    // The checking piece is above the king
+                    // Quân chiếu nằm phía trên vua
                     for (int row = checkingP.row; row < king.row; row++) {
                         for (Piece piece : simPieces) {
                             if (piece != king && piece.color != currentColor && piece.canMove(checkingP.col, row)) {
@@ -237,7 +223,7 @@ public class GamePanel extends JPanel implements Runnable {
                     }
                 }
                 if (checkingP.row > king.row) {
-                    // The checking piece is below the king
+                    // Quân chiếu nằm phía dưới vưa
                     for (int row = checkingP.row; row > king.row; row--) {
                         for (Piece piece : simPieces) {
                             if (piece != king && piece.color != currentColor && piece.canMove(checkingP.col, row)) {
@@ -247,9 +233,9 @@ public class GamePanel extends JPanel implements Runnable {
                     }
                 }
             } else if (rowDiff == 0) {
-                // The checking piece is attacking horizontally
+                //Kiểm tra chiều ngang
                 if (checkingP.col < king.col) {
-                    // The checking piece is to the left
+                    // Quân chiếu ở bên trái
                     for (int col = checkingP.col; col < king.col; col++) {
                         for (Piece piece : simPieces) {
                             if (piece != king && piece.color != currentColor && piece.canMove(col, checkingP.row)) {
@@ -259,7 +245,7 @@ public class GamePanel extends JPanel implements Runnable {
                     }
                 }
                 if (checkingP.col > king.col) {
-                    // The checking piece is to the right
+                    // Quân chiếu ở bên phải
                     for (int col = checkingP.col; col > king.col; col--) {
                         for (Piece piece : simPieces) {
                             if (piece != king && piece.color != currentColor && piece.canMove(col, checkingP.row)) {
@@ -270,11 +256,11 @@ public class GamePanel extends JPanel implements Runnable {
 
                 }
             } else if (colDiff == rowDiff) {
-                // The checking piece is attacking diagonally
+                // Hướng chéo
                 if (checkingP.row < king.row) {
-                    // The checking piece is above the king
+                    // Quân chiếu ở trên vua
                     if (checkingP.col < king.col) {
-                        // The checking piece is in the upper left
+                        // Quân chiếu ở phía trên bên trái
                         for (int col = checkingP.col, row = checkingP.row; col < king.col; col++, row++) {
                             for (Piece piece : simPieces) {
                                 if (piece != king && piece.color != currentColor && piece.canMove(col, row)) {
@@ -284,7 +270,7 @@ public class GamePanel extends JPanel implements Runnable {
                         }
                     }
                     if (checkingP.col > king.col) {
-                        // The checking piece is in the upper right
+                        // Quân chiếu ở phía trên bên phải
                         for (int col = checkingP.col, row = checkingP.row; col > king.col; col--, row++) {
                             for (Piece piece : simPieces) {
                                 if (piece != king && piece.color != currentColor && piece.canMove(col, row)) {
@@ -295,9 +281,9 @@ public class GamePanel extends JPanel implements Runnable {
                     }
                 }
                 if (checkingP.row > king.row) {
-                    // The checking piece is below the king
+                    // Quân chiếu ở dưới vưa
                     if (checkingP.col < king.col) {
-                        // The checking piece is in the lower left
+                        // Quân chiếu ở dưới bên trái
                         for (int col = checkingP.col, row = checkingP.row; col < king.col; col++, row--) {
                             for (Piece piece : simPieces) {
                                 if (piece != king && piece.color != currentColor && piece.canMove(col, row)) {
@@ -307,7 +293,7 @@ public class GamePanel extends JPanel implements Runnable {
                         }
                     }
                     if (checkingP.col > king.col) {
-                        // The checking piece is in the lower right
+                        //Quân chiếu ở dưới bên phải
                         for (int col = checkingP.col, row = checkingP.row; col > king.col; col--, row--) {
                             for (Piece piece : simPieces) {
                                 if (piece != king && piece.color != currentColor && piece.canMove(col, row)) {
@@ -324,7 +310,6 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
     private boolean kingCanMove(Piece king) {
-        // Simulate if there is any square where the king can move to
         if (isValidMove(king, -1, -1)) {
             return true;
         }
@@ -356,7 +341,6 @@ public class GamePanel extends JPanel implements Runnable {
     private boolean isValidMove(Piece king, int colPlus, int rowPlus) {
         boolean isValidMove = false;
 
-        // Update the king's position for a second;
         king.col += colPlus;
         king.row += rowPlus;
 
@@ -368,7 +352,7 @@ public class GamePanel extends JPanel implements Runnable {
                 isValidMove = true;
             }
         }
-        //  Reset the king's position and restore the removed piece
+        
         king.resetPosition();
         copyPieces(pieces, simPieces);
         return isValidMove;
@@ -376,14 +360,14 @@ public class GamePanel extends JPanel implements Runnable {
 
     public boolean isStalemate() {
         int count = 0;
-        // Count the number of pieces
+        
         for (Piece piece : simPieces) {
             if (piece.color != currentColor) {
                 count++;
             }
         }
 
-        // If only one piece (the king) is left
+        
         if (count == 1) {
             if (kingCanMove(getKing(true)) == false) {
                 return true;
@@ -521,6 +505,7 @@ public class GamePanel extends JPanel implements Runnable {
                 g2.drawString("Black's turn", 672, 250);
 
                 if (checkingP != null && checkingP.color == WHITE) {
+                    
                     g2.setColor(Color.red);
                     g2.drawString("The King", 672, 100);
                     g2.drawString("Is in check", 672, 150);

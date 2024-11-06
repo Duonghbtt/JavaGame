@@ -51,7 +51,7 @@ public class GetOutPanel extends GamePanel {
         setPreferredSize(new Dimension(WIDTH, HEIGHT + 110));
         setLayout(null); // Sử dụng layout null để đặt vị trí cho nút
         // Khởi tạo và thêm JLabel
-        messageArea = new JTextArea(" Thoát khỏi kiểm tra \n Vua không bao giờ bị bắt trong cờ vua. Vì vậy, nếu bạn bị chiếu, bạn phải thoát khỏi tình trạng bị chiếu bằng bất kỳ phương pháp nào sau đây.. ");
+        messageArea = new JTextArea(" Thoát khỏi chiếu \n Vua không bao giờ bị bắt trong cờ vua. Vì vậy, nếu bạn bị chiếu, bạn phải thoát khỏi tình trạng bị chiếu bằng bất kỳ phương pháp nào sau đây.. ");
         messageArea.setBounds(0, 650, 770, 110); // Đặt vị trí và kích thước cho JTextArea
         messageArea.setForeground(Color.BLACK); // Thiết lập màu chữ
         messageArea.setFont(new Font("Serif", Font.BOLD, 18)); // Thiết lập font chữ
@@ -73,12 +73,12 @@ public class GetOutPanel extends GamePanel {
                 click += 1;
                 System.out.println("Next button clicked");
                 if (click == 1) {
-                    messageArea.setText(" Thoát khỏi kiểm tra\n Di chuyển Vua ra khỏi vị trí chiếu, Bắt quân đang chiếu hoặc Chặn chiếu bằng một quân khác, trừ khi quân đó đang chặn chiếu khác. ");
+                    messageArea.setText(" Thoát khỏi chiếu\n Di chuyển Vua ra khỏi vị trí chiếu, Bắt quân đang chiếu hoặc Chặn chiếu bằng một quân khác, trừ khi quân đó đang chặn chiếu khác. ");
                 }
                 if (click == 2) {
                     nextButton.setEnabled(false);
                     isInteractionEnabled = true;
-                    messageArea.setText(" Thoát khỏi kiểm tra\n Hậu của quân Đen đang chiếu Vua của bạn. Bạn có thể tìm ra nước đi thoát khỏi thế chiếu và đi đến nơi an toàn không");
+                    messageArea.setText(" Thoát khỏi chiếu\n Hậu của quân Đen đang chiếu Vua của bạn. Bạn có thể tìm ra nước đi thoát khỏi thế chiếu và đi đến nơi an toàn không");
                 }
             }
         });
