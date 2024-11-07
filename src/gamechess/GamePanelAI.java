@@ -78,18 +78,23 @@ public class GamePanelAI extends GamePanel {
         pieces.add(new Queen(WHITE, 3, 7));
         pieces.add(new King(WHITE, 4, 7));
 
-        // Thêm quân cờ đen
-        for (int i = 0; i < 8; i++) {
-            pieces.add(new Pawn(BLACK, i, 1));
-        }
+        // Thêm quân cờ đen    
+        pieces.add(new Pawn(BLACK, 7, 1));
+        pieces.add(new King(BLACK, 4, 0));
+        pieces.add(new Queen(BLACK, 3, 0));
+        pieces.add(new Pawn(BLACK, 0, 1));
+        pieces.add(new Pawn(BLACK, 1, 1));
         pieces.add(new Rook(BLACK, 0, 0));
         pieces.add(new Rook(BLACK, 7, 0));
-        pieces.add(new Knight(BLACK, 1, 0));
-        pieces.add(new Knight(BLACK, 6, 0));
+        pieces.add(new Pawn(BLACK, 3, 1));
+        pieces.add(new Pawn(BLACK, 4, 1));
         pieces.add(new Bishop(BLACK, 2, 0));
         pieces.add(new Bishop(BLACK, 5, 0));
-        pieces.add(new Queen(BLACK, 3, 0));
-        pieces.add(new King(BLACK, 4, 0));
+        pieces.add(new Pawn(BLACK, 5, 1));
+        pieces.add(new Pawn(BLACK, 6, 1));
+        pieces.add(new Knight(BLACK, 1, 0));
+        pieces.add(new Knight(BLACK, 6, 0));
+        pieces.add(new Pawn(BLACK, 2, 1));
     }
 
     @Override
@@ -160,9 +165,13 @@ public class GamePanelAI extends GamePanel {
                                 castlingP.updatePosition();
                             }
                             isKingInCheck();
-                            if(checkingP!=null) System.out.println("checkingP WHITE" + checkingP.type + " " + checkingP.col + " " + checkingP.row  );
+                            if (checkingP != null) {
+                                System.out.println("checkingP WHITE" + checkingP.type + " " + checkingP.col + " " + checkingP.row);
+                            }
                             System.out.println(isKingInCheck());
-                            if(checkingP!=null) System.out.println(isCheckmate());
+                            if (checkingP != null) {
+                                System.out.println(isCheckmate());
+                            }
                             if (isKingInCheck() && isCheckmate()) {
                                 gameOver = true;
                             } else if (isStalemate() && isKingInCheck() == false) {
@@ -287,11 +296,11 @@ public class GamePanelAI extends GamePanel {
                     changePlayer();
                 }
             }
-            
+
             availableMoves = null;
             availableCaptures = null;
         }
-        
+
     }
 
     private void simulateAI() {
@@ -337,7 +346,7 @@ public class GamePanelAI extends GamePanel {
                         simPieces.remove(capturedIndex); // Xóa quân cờ bị bắt
                     }
                 }
-                
+
                 System.out.println(isIllegal(activeP));
                 System.out.println(opponentCanCaptureKing());
                 if (!isIllegal(activeP) && !opponentCanCaptureKing()) {
@@ -357,7 +366,9 @@ public class GamePanelAI extends GamePanel {
             activeP.x = originalCol * Board.SQUARE_SIZE;
             activeP.y = originalRow * Board.SQUARE_SIZE;
             activeP.updatePosition();
-            if(capturedPiece!=null) simPieces.add(capturedPiece);
+            if (capturedPiece != null) {
+                simPieces.add(capturedPiece);
+            }
             // Phục hồi danh sách simPieces ban đầu
             copyPieces(pieces, simPieces);
         }
@@ -370,7 +381,6 @@ public class GamePanelAI extends GamePanel {
         activeP = tmp;
         copyPieces(pieces, simPieces);
     }
-
 
     private void promotingAI() {
         Random random = new Random();
@@ -401,7 +411,6 @@ public class GamePanelAI extends GamePanel {
         promotion = false;
         changePlayer();
     }
-
 
     @Override
     public void paintComponent(Graphics g
